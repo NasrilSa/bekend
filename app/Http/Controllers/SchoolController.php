@@ -9,7 +9,7 @@ class SchoolController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */     public function index()
+     */     public function showAll()
     {
         $school = school::with(['city'])->get();
         return response()->json($school);
@@ -18,7 +18,7 @@ class SchoolController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $request->validate([
             "name" => "required"
@@ -57,7 +57,7 @@ class SchoolController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function schoolDetail(string $id)
     {
         $school = school::with(['city', 'student_class'])->find($id);
 
@@ -90,7 +90,7 @@ class SchoolController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function deleteSchool(string $id)
     {
         $school = school::find($id);
         if ($school) {

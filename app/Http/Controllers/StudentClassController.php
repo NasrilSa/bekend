@@ -11,7 +11,7 @@ class StudentClassController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function showAll()
     {
         $class = student_class::with('school')->get();
         return response()->json($class);
@@ -20,7 +20,7 @@ class StudentClassController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $request->validate([
             "name" => "required"
@@ -47,7 +47,7 @@ class StudentClassController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function showClass(string $id)
     {
         $class = student_class::with(['student', 'student.User', 'school'])->find($id);
         return response()->json($class);
@@ -79,7 +79,7 @@ class StudentClassController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function deleteClass(string $id)
     {
         $class = student_class::find($id);
         if ($class) {

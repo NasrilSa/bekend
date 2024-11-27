@@ -13,14 +13,14 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function showAll()
     {
         $student = student::with(['User', 'city', 'school', 'class'])->get();
         return response()->json($student);
     }
 
 
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -61,7 +61,7 @@ class StudentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function showStudent(string $id)
     {
         try {
             $student = student::with(['User', 'city', 'school', 'class'])->find($id);
@@ -110,7 +110,7 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
         $user = User::with('student')->find($id);
         if ($user) {

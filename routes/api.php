@@ -34,8 +34,6 @@ Route::prefix('/school')->group(function () {
     Route::put('/{schoolId}', [SchoolController::class, 'update']);
     Route::get('/', [SchoolController::class, 'showAll']);
     Route::get('/{schoolId}', [SchoolController::class, 'schoolDetail']);
-    Route::get('/{schoolId}/class', [SchoolController::class, 'showClasses']);
-    Route::get('/{schoolId}/students', [SchoolController::class, 'showStudent']);
     Route::delete('/{schoolId}', [SchoolController::class, 'deleteSchool']);
 });
 
